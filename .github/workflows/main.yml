@@ -36,7 +36,7 @@ jobs:
         steps:
             - name: Setup SSH Key
               run:  |
-                echo << EOF > id_ras
+                echo << EOF > id_rsa
                 ${{ secrets.SSH_GITHUB_ACTION }}
                 EOF
             
