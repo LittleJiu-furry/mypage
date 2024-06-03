@@ -36,7 +36,9 @@ jobs:
         steps:
             - name: Setup SSH Key
               run:  |
-                echo ${{ secrets.SSH_GITHUB_ACTION }} > id_ras
+                echo << EOF > id_ras
+                ${{ secrets.SSH_GITHUB_ACTION }}
+                EOF
             
             - name: Deploy
               run: |
