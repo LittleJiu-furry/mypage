@@ -35,14 +35,11 @@ jobs:
         needs: build
         steps:
             - name: Setup SSH Key
-              uses: webfactory/ssh-agent@v0.5.3
-              with:
-                ssh-private-key: ${{ secrets.SSH_GITHUB_ACTION }} 
+              run:  |
+                echo ${{ secrets.SSH_GITHUB_ACTION }} > id_ras
             
             - name: Deploy
               run: |
-                scp -r dist/* ${{ secrets.TARGET_SERVER }}:/testIndex
-              env:
-                SSH_PRIVATE_KEY: ${{ secrets.SSH_GITHUB_ACTION }}
+                scp -r dist/* ${{ secrets.TARGET_SERVER }}:/testIndex -i id_rsa
 
             
