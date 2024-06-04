@@ -35,13 +35,12 @@ jobs:
         needs: build
         steps:
             - name: Setup SSH Key
-              run:  |
-                echo << EOF > id_rsa
-                ${{ secrets.SSH_GITHUB_ACTION }}
-                EOF
+              uses: webfactory/ssh-agent@v0.5.3
+              with:
+                  ssh-pravite-key: ${{ secrets.SSH_GITHUB_ACTION }}
             
             - name: Deploy
               run: |
-                scp -r dist/* ${{ secrets.TARGET_SERVER }}:/testIndex -i id_rsa
+                scp -r dist/* ${{ secrets.TARGET_SERVER }}:/testIndex
 
             
