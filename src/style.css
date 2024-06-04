@@ -4,8 +4,8 @@ body {
   place-items: center;
   height: 100dvh;
   width: 100vw;
-  /* min-width: 450px; */
 }
+
 
 #app {
   margin: 0 auto;

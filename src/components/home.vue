@@ -35,7 +35,7 @@ const handleCommand = (cmd) => {
                         <!-- 首页图 -->
                     </el-col>
                     <el-col :span="12">
-                        <el-input clearable v-model="inputValue" :placeholder="inputPlaceholder" @change="inputChange">
+                        <el-input class="inputBox" clearable v-model="inputValue" :placeholder="inputPlaceholder" @change="inputChange">
                             <template #prepend>
                                 <el-button :icon="Search"></el-button>
                             </template>
@@ -165,9 +165,22 @@ const handleCommand = (cmd) => {
 }
 
 .content{
+    box-sizing: border-box;
     padding: 20px;
     overflow-x: hidden;
     overflow-y: auto;
+}
+
+@media (max-width: 768px){
+    .content {
+        padding: 20px 10px;
+    }
+    .header{
+        padding: 0 10px;
+    }
+    .right_flex{
+        gap: 5px;
+    }
 }
 
 .right_flex{
@@ -177,7 +190,9 @@ const handleCommand = (cmd) => {
     gap: 15px;
 }
 
-/* .pane{
-    transition: all .5s;
-} */
+.inputBox{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 10px;
+}
 </style>

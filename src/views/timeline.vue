@@ -110,4 +110,9 @@ html.dark .card{
     box-shadow: 0px 0px 10px var(--hover-color);
 }
 
+#timeline_out{
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
 </style>

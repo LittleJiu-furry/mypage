@@ -16,23 +16,25 @@ watchEffect(()=>{
     current_tab.value = map[props.show] || "timeline"
 })
 
-const isMobile = ref(false)
+const isMobile = ref(window.innerWidth < 768)
+const tabPosition = ref(window.innerWidth < 768 ? "top" : "left")
 onMounted(() => {
     isMobile.value = window.innerWidth < 768
     window.addEventListener('resize', () => {
         isMobile.value = window.innerWidth < 768
+        tabPosition.value = isMobile.value ? "top" : "left"
     })
 })
 
 </script>
 
 <template>
-    <el-tabs tab-position="left" class="tabs" v-model="current_tab" :stretch="true">
+    <el-tabs :tab-position="tabPosition" class="tabs" v-model="current_tab" :stretch="true">
         <el-tab-pane name="timeline" class="pane">
             <template #label>
                 <span class="custom_label">
                     <el-icon><Expand /></el-icon>
-                    <span v-if="!isMobile">时间线</span>
+                    <span>时间线</span>
                 </span>
             </template>
             <timeline></timeline>
@@ -41,7 +43,7 @@ onMounted(() => {
             <template #label>
                 <span class="custom_label">
                     <el-icon><Share /></el-icon>
-                    <span v-if="!isMobile">友情链接</span>
+                    <span>友情链接</span>
                 </span>
             </template>
             <friendlink></friendlink>
@@ -67,4 +69,5 @@ onMounted(() => {
     vertical-align: middle;
     margin-left: 4px;
 }
+
 </style>
