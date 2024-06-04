@@ -39,3 +39,4 @@ jobs:
                   port: ${{ secrets.SERVER_PORT }}
                   source: "dist/*"
                   target: "~/testIndex/"
+                  overwrite: true
