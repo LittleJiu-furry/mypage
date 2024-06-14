@@ -29,18 +29,15 @@ jobs:
               with:
                 name: dist
                 path: dist/
-
-            - name: Rename
-              run: |
-                  mv dist index
                 
             - name: Deploy
-              uses: appleboy/scp-action@master
+              uses: SamKirkland/FTP-Deploy-Action@4.3.0
               with:
-                  username: ${{ secrets.SERVER_USER }}
-                  host: ${{ secrets.SERVER_HOST }}
-                  key: ${{ secrets.SSH_GITHUB_ACTION }}
-                  port: ${{ secrets.SERVER_PORT }}
-                  source: "index/*"
-                  target: "~/website/"
-                  overwrite: true
+                server: ${{ secrets.FTP_HOST }}
+                username: ${{ secrets.FTP_USER }}
+                password: ${{ secrets.FTP_PWD }}
+                port: ${{ secrets.FTP_PORT }}
+                local-dir: dist
+                server-dir: ${{ secrets.FTP_DIR }}/index
+
+
