@@ -37,7 +37,7 @@ jobs:
                 username: ${{ secrets.FTP_USER }}
                 password: ${{ secrets.FTP_PWD }}
                 port: ${{ secrets.FTP_PORT }}
-                local-dir: dist
-                server-dir: ${{ secrets.FTP_DIR }}/index
+                local-dir: dist/
+                server-dir: ${{ secrets.FTP_DIR }}/index/
 
 
