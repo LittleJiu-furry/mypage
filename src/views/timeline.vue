@@ -4,15 +4,55 @@ const loading = ref(false)
 const activities = reactive([])
 const load = () => {
     loading.value = true
-    activities.push({
-        title: '标题',
-        subtitle: '副标题',
-        timestamp: '2021-09-01',
-        content: '内容内容内容内容内容内容内容内容内容内容内容内容内容内容\n内容内容内容内容内容内容',
-        tags: ['标签1', '标签2'],
-        id: "test1"
+    const wait = new Promise(resolve => {
+        setTimeout(()=>{
+            activities.push({
+                title: '标题',
+                subtitle: '副标题',
+                timestamp: '2021-09-01',
+                content: '内容内容内容内容内容内容内容内容内容内容内容内容内容内容\n内容内容内容内容内容内容',
+                tags: ['标签1', '标签2'],
+                id: "test1"
+            })
+            activities.push({
+                title: '标题',
+                subtitle: '副标题',
+                timestamp: '2021-09-01',
+                content: '内容内容内容内容内容内容内容内容内容内容内容内容内容内容\n内容内容内容内容内容内容',
+                tags: ['标签1', '标签2'],
+                id: "test1"
+            })
+            activities.push({
+                title: '标题',
+                subtitle: '副标题',
+                timestamp: '2021-09-01',
+                content: '内容内容内容内容内容内容内容内容内容内容内容内容内容内容\n内容内容内容内容内容内容',
+                tags: ['标签1', '标签2'],
+                id: "test1"
+            })
+            activities.push({
+                title: '标题',
+                subtitle: '副标题',
+                timestamp: '2021-09-01',
+                content: '内容内容内容内容内容内容内容内容内容内容内容内容内容内容\n内容内容内容内容内容内容',
+                tags: ['标签1', '标签2'],
+                id: "test1"
+            })
+            activities.push({
+                title: '标题',
+                subtitle: '副标题',
+                timestamp: '2021-09-01',
+                content: '内容内容内容内容内容内容内容内容内容内容内容内容内容内容\n内容内容内容内容内容内容',
+                tags: ['标签1', '标签2'],
+                id: "test1"
+            })
+            
+            resolve()
+        },1000)
     })
-    loading.value = false
+    wait.then(()=>{
+        loading.value = false
+    })
 }
 
 </script>

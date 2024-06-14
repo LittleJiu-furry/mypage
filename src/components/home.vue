@@ -13,15 +13,7 @@ const inputChange = (val) => {
 }
 
 const handleCommand = (cmd) => {
-    // cmd是一个对象， 包含handle和args两个属性
-    // 如果cmd不是这个对象，那么直接返回
-    if (typeof cmd !== 'object') return
-    // 如果cmd.handle不是一个函数，那么直接返回
-    if (typeof cmd.handle !== 'function') return
-    // 如果cmd.args不是一个数组，那么直接返回
-    if (!Array.isArray(cmd.args)) return
-    // 调用cmd.handle函数，并传入cmd.args作为参数
-    cmd.handle(...cmd.args)
+    typeof cmd?.handle == "function" ? cmd.handle() : console.log(cmd);
 }
 
 </script>

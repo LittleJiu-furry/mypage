@@ -4,6 +4,7 @@ import map from "../utils/tabsViewMap"
 import { Expand, Share } from "@element-plus/icons-vue";
 // 默认显示的tab
 const current_tab = ref("timeline");
+const isShow = ref(false)
 const props = defineProps({
     show: {
         type: String,
@@ -14,6 +15,12 @@ const props = defineProps({
 
 watchEffect(()=>{
     current_tab.value = map[props.show] || "timeline"
+})
+
+watchEffect(()=>{
+    if(current_tab.value == 'friendlink' & !isShow.value){
+        isShow.value = true
+    }
 })
 
 const isMobile = ref(window.innerWidth < 768)
@@ -46,7 +53,7 @@ onMounted(() => {
                     <span>友情链接</span>
                 </span>
             </template>
-            <friendlink></friendlink>
+            <friendlink v-if="isShow"></friendlink>
         </el-tab-pane>
     </el-tabs>
 </template>

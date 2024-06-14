@@ -11,6 +11,7 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
     "element-plus": "^2.7.3",
+    "lodash": "^4.17.21",
     "showdown-katex": "^0.8.0",
     "showdown-toc": "^1.1.0",
     "unplugin-auto-import": "^0.17.6",

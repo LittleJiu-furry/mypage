@@ -1,30 +1,37 @@
 <script setup>
+import { useRouter } from "vue-router"
+import { } from 'lodash'
+import { getStatus } from '../utils/back'
+
 const logined = ref(false)
 const isAdmin = ref(false)
 
-// 读取cookie
-const getCookies = () => {
-    console.log(document.cookie.split(';'));
-    // return document.cookie.split(';').map(cookie => {
-    //     const [name, value] = cookie.split('=')
-    //     return { name: name.trim(), value: value.trim() }
-    // })
+const s = getStatus()
+logined.value = s.logined
+const _u_info = s.user
+
+const router = useRouter()
+const userCenter = {
+    handle: () => {
+        router.push(`/user/${_u_info?.uid}`)
+    }
 }
-
-const cookies = getCookies()
-// const getCookie = (name: string): string | undefined => {
-//     return cookies.find(cookie => cookie.name === name)?.value
-// }
-
-// console.log(cookies);
-
+const logout = {
+    handle: () => {
+        
+    }
+}
 
 
 </script>
 
 <template>
-    <el-dropdown-menu >
-        <el-dropdown-item>个人中心</el-dropdown-item>
-        <el-dropdown-item>退出登录</el-dropdown-item>
+    <el-dropdown-menu v-if="logined">
+        <el-dropdown-item :command="userCenter">个人中心</el-dropdown-item>
+        <el-dropdown-item :command="logout">退出登录</el-dropdown-item>
+    </el-dropdown-menu>
+    <el-dropdown-menu v-else="logined">
+        <el-dropdown-item>登录</el-dropdown-item>
+        <el-dropdown-item>注册</el-dropdown-item>
     </el-dropdown-menu>
 </template>

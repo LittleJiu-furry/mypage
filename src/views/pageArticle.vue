@@ -1,9 +1,7 @@
 <script setup>
-import { defineComponent, reactive, watchEffect } from 'vue';
+import { reactive, watchEffect } from 'vue';
 import { ArrowLeft } from '@element-plus/icons-vue';
-import tocPlugin from 'showdown-toc'
-import katex from 'showdown-katex'
-const toc = tocPlugin()
+
 const props = defineProps({
     show: {
         type: String,
@@ -36,19 +34,10 @@ const showdownOpts = {
     smoothLivePreview: true,
 }
 
-const plugins = [
-    toc(),
-    katex({
-        displayMode: true,
-        throwOnError: false,
-        output: "mathml",
-        delimiters: [
-            { left: "$$", right: "$$", display: true, asciimath: true,},
-            { left: "$", right: "$", display: false, asciimath: true,},
-        ],
 
-    }),
-]
+const plugin = import('../utils/pageArticleUse.js')
+const p = ref([])
+plugin.then(res=>p.value = res.default)
 
 </script>
 
@@ -82,7 +71,7 @@ const plugins = [
                         flavor="github" 
                         class="content" 
                         :options="showdownOpts"
-                        :extensions="plugins" 
+                        :extensions="p" 
                     />
                 </template>
 
